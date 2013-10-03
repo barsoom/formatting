@@ -50,6 +50,7 @@ Formatting.format_currency("SEK", 1234)  # => "1,234 SEK"
 
 item = Item.new(price: 1234, currency: "SEK")
 Formatting.format_currency(item, :price)  # => "1,234 SEK"
+Formatting.format_currency(company, item.price)  # => "1,234 SEK"
 
 Formatting.defaults[:currency] = "SEK"
 item = Item.new(price: 1234)  # Does not respond to "currency"
