@@ -81,3 +81,4 @@ Or install it yourself as:
 ## TODO
 
 * Don't depend on `i18n`?
+* Rename? This name is boring and also generic enough that collisions seem likely.
