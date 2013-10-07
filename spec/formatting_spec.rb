@@ -16,6 +16,17 @@ describe Formatting do
       end
     end
 
+    context "minimum number of decimals" do
+      it "is not enforced by default" do
+        expect_formatted(12).to eq "12.0"
+        expect_formatted(12.3).to eq "12.3"
+      end
+
+      it "can be enforced" do
+        expect_formatted(12.3, min_decimals: 2).to eq "12.30"
+      end
+    end
+
     def expect_formatted(value, opts = {})
       expect(Formatting.format_number(value, opts))
     end
