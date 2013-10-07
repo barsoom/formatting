@@ -1,5 +1,15 @@
 require "formatting"
 
+class ClassWithInclusions
+  include Formatting::Number
+end
+
+describe Formatting::Number do
+  it "can be included as a module" do
+    expect(ClassWithInclusions.new.format_number(1)).to eq "1.0"
+  end
+end
+
 describe Formatting do
   describe ".format_number" do
     it "groups thousands" do
