@@ -38,7 +38,6 @@ Formatting.format_number(0, blank_when_zero: true)  # => ""
 Formatting.format_number(1, explicit_sign: true)  # => "+1"
 ```
 
-
 ### Currency
 
 The currency formatter should usually be passed some object that
@@ -82,3 +81,4 @@ Or install it yourself as:
 
 * Don't depend on `i18n`?
 * Rename? This name is boring and also generic enough that collisions seem likely.
+* Document options
