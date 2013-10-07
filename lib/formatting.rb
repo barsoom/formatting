@@ -1,7 +1,8 @@
 require "formatting/version"
 
 module Formatting
-  THOUSANDS_SEPARATOR = ","
+  NON_BREAKING_SPACE = "\xc2\xa0"
+  THOUSANDS_SEPARATOR = NON_BREAKING_SPACE
   DECIMAL_SEPARATOR = "."
 
   def self.format_number(number)
