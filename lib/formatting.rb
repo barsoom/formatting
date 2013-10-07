@@ -10,9 +10,14 @@ module Formatting
       thousands_separator = THOUSANDS_SEPARATOR
       decimal_separator = DECIMAL_SEPARATOR
 
-      round         = opts.fetch(:round, nil)
-      min_decimals  = opts.fetch(:min_decimals, nil)
-      explicit_sign = opts.fetch(:explicit_sign, false)
+      round           = opts.fetch(:round, nil)
+      min_decimals    = opts.fetch(:min_decimals, nil)
+      explicit_sign   = opts.fetch(:explicit_sign, false)
+      blank_when_zero = opts.fetch(:blank_when_zero, false)
+
+      if blank_when_zero
+        return "" if number.zero?
+      end
 
       # Avoid negative zero.
       number = 0 if number.zero?

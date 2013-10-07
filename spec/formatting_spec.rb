@@ -26,6 +26,17 @@ describe Formatting do
       end
     end
 
+    context "blanking when zero" do
+      it "does not happen by default" do
+        expect_formatted(0).to eq "0.0"
+      end
+
+      it "can be enforced" do
+        expect_formatted(0, blank_when_zero: true).to eq ""
+      end
+    end
+
+
     context "minimum number of decimals" do
       it "is not enforced by default" do
         expect_formatted(12).to eq "12.0"
