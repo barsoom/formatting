@@ -79,6 +79,7 @@ Or install it yourself as:
 
 ## TODO
 
+* Actually use i18n for separators
 * Don't depend on `i18n`?
 * Rename? This name is boring and also generic enough that collisions seem likely.
 * Document options
