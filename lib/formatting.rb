@@ -10,8 +10,9 @@ module Formatting
       thousands_separator = THOUSANDS_SEPARATOR
       decimal_separator = DECIMAL_SEPARATOR
 
-      round = opts.fetch(:round, nil)
-      min_decimals = opts.fetch(:min_decimals, nil)
+      round         = opts.fetch(:round, nil)
+      min_decimals  = opts.fetch(:min_decimals, nil)
+      explicit_sign = opts.fetch(:explicit_sign, false)
 
       if round
         number = number.round(round)
@@ -21,6 +22,10 @@ module Formatting
       decimals ||= "0"
 
       integer.gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{thousands_separator}")
+
+      if explicit_sign
+        integer = "+#{integer}" if number > 0
+      end
 
       if min_decimals
         decimals = decimals.ljust(min_decimals, "0")
