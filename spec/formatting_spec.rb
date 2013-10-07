@@ -1,12 +1,10 @@
 require "formatting"
 
-class ClassWithInclusions
-  include Formatting::Number
-end
-
 describe Formatting::Number do
   it "can be included as a module" do
-    expect(ClassWithInclusions.new.format_number(1)).to eq "1.0"
+    object = Object.new
+    object.extend Formatting::Number
+    expect(object).to respond_to(:format_number)
   end
 end
 
