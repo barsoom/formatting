@@ -14,6 +14,9 @@ module Formatting
       min_decimals  = opts.fetch(:min_decimals, nil)
       explicit_sign = opts.fetch(:explicit_sign, false)
 
+      # Avoid negative zero.
+      number = 0 if number.zero?
+
       if round
         number = number.round(round)
       end

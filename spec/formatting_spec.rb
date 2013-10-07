@@ -44,6 +44,10 @@ describe Formatting do
         expect_formatted(-1).to eq "-1.0"
       end
 
+      it "never shows 0 as negative" do
+        expect_formatted(-0.0).to eq "0.0"
+      end
+
       it "can be enforced" do
         expect_formatted(1, explicit_sign: true).to eq "+1.0"
         expect_formatted(0, explicit_sign: true).to eq "0.0"
