@@ -18,7 +18,7 @@ describe Formatting do
       expect_formatted(1234.567, round: 2).to include space_to_nbsp("1 234.57")
     end
 
-    context "currency" do
+    context "currency option" do
       it "is added if provided" do
         expect_formatted(1234.56, currency: "XYZ").to eq space_to_nbsp("1 234.56 XYZ")
       end
@@ -28,15 +28,16 @@ describe Formatting do
       end
     end
 
-    context "custom format string" do
-      it "can be provided" do
+    context "format string option" do
+      it "is used if provided" do
         expect_formatted(123, format: "C: <currency> N: <number>", currency: "XYZ").
           to eq space_to_nbsp("C: XYZ N: 123.0")
       end
 
-      it "replaces spaces with non-breaking spaces" do
-        expect_formatted(123, currency: "XYZ").to eq space_to_nbsp("123.0 XYZ")
-        expect_formatted(123, currency: "XYZ").not_to eq "123.0 XYZ"
+      it "will have spaces turned into non-breaking spaces" do
+        expect_actual = expect_formatted(123, format: "<number> <currency>", currency: "XYZ")
+        expect_actual.to eq space_to_nbsp("123.0 XYZ")
+        expect_actual.not_to eq "123.0 XYZ"
       end
 
       it "is stripped" do
