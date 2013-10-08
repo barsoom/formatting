@@ -13,6 +13,10 @@ describe Formatting do
     it "formats numbers" do
       expect_formatted(1234.567).to eq space_to_nbsp("1 234.567")
     end
+
+    it "passes on number formatting options" do
+      expect_formatted(1234.567, round: 2).to eq space_to_nbsp("1 234.57")
+    end
   end
 
   def expect_formatted(value, opts = {})
