@@ -6,7 +6,11 @@ module Formatting
       currency      = opts.fetch(:currency, nil)
       format_string = opts.fetch(:format, "<amount> <currency>")
 
-      amount = amount_or_method
+      if amount_or_method.is_a?(Symbol)
+        amount = record.public_send(amount_or_method)
+      else
+        amount = amount_or_method
+      end
 
       amount = format_number(amount, opts)
       apply_format_string(format_string, amount, currency)
