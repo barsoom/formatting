@@ -64,4 +64,8 @@ describe Formatting do
       end
     end
   end
+
+  def expect_formatted(value, opts = {})
+    expect(Formatting.format_number(value, opts))
+  end
 end

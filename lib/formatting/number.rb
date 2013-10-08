@@ -1,6 +1,5 @@
 module Formatting
   module Number
-    NON_BREAKING_SPACE = "\xc2\xa0"
     THOUSANDS_SEPARATOR = NON_BREAKING_SPACE
     DECIMAL_SEPARATOR = "."
 
