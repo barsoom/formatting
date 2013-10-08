@@ -5,12 +5,8 @@ require "formatting/currency"
 module Formatting
   NON_BREAKING_SPACE = "\xc2\xa0"
 
-  def self.defaults=(opts)
-    @defaults = opts
-  end
-
-  def self.defaults
-    @defaults
+  class << self
+    attr_accessor :defaults
   end
 
   self.defaults = {}
