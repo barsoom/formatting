@@ -1,4 +1,4 @@
-require "formatting"
+require "spec_helper"
 
 describe Formatting::Number do
   it "can be included as a module" do
@@ -63,16 +63,5 @@ describe Formatting do
         expect_formatted(-1, explicit_sign: true).to eq "-1.0"
       end
     end
-
-    def expect_formatted(value, opts = {})
-      expect(Formatting.format_number(value, opts))
-    end
-
-    def space_to_nbsp(value)
-      value.gsub(" ", "\xc2\xa0")
-    end
   end
 end
-
-# rounding (default/custom)
-# including module
