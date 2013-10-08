@@ -1,12 +1,8 @@
 module Formatting
   module Number
-    THOUSANDS_SEPARATOR = NON_BREAKING_SPACE
-    DECIMAL_SEPARATOR = "."
-
     def format_number(number, opts = {})
-      thousands_separator = THOUSANDS_SEPARATOR
-      decimal_separator = DECIMAL_SEPARATOR
-
+      thousands_separator = opts.fetch(:thousands_separator, NON_BREAKING_SPACE)
+      decimal_separator   = opts.fetch(:decimal_separator, ".")
       round           = opts.fetch(:round, nil)
       min_decimals    = opts.fetch(:min_decimals, nil)
       explicit_sign   = opts.fetch(:explicit_sign, false)
