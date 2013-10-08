@@ -38,8 +38,18 @@ describe Formatting do
         expect_formatted(item, 1234.56, currency: "XYZ").to eq space_to_nbsp("1 234.56 XYZ")
       end
 
-      it "may be nil" do
-        expect_formatted(item, 1234.56).to eq space_to_nbsp("1 234.56")
+      it "is read from the record's #currency if present" do
+        item.stub(currency: "SEK")
+        expect_formatted(item, 1).to eq space_to_nbsp("1.0 SEK")
+      end
+
+      it "is not added if the record's #currency is blank" do
+        item.stub(currency: "")
+        expect_formatted(item, 1).to eq space_to_nbsp("1.0")
+      end
+
+      it "is not added if the record does not respond to #currency" do
+        expect_formatted(item, 1).to eq space_to_nbsp("1.0")
       end
     end
 

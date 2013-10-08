@@ -3,8 +3,11 @@ module Formatting
     include Number
 
     def format_currency(record, amount_or_method, opts = {})
-      currency      = opts.fetch(:currency, nil)
       format_string = opts.fetch(:format, "<amount> <currency>")
+
+      currency = opts.fetch(:currency) {
+        record.respond_to?(:currency) ? record.currency: nil
+      }
 
       if amount_or_method.is_a?(Symbol)
         amount = record.public_send(amount_or_method)
