@@ -1,8 +1,14 @@
 module Formatting
+  class NotARecordError < StandardError; end
+
   module Currency
     include Number
 
     def format_currency(record, amount_or_method, opts = {})
+      if record.is_a?(Symbol)
+        raise NotARecordError, "#{record.inspect} doesn't look like a record"
+      end
+
       opts = Formatting.defaults.merge(opts)
 
       format_string = opts.fetch(:format, "<amount> <currency>")
