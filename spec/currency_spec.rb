@@ -27,8 +27,8 @@ describe Formatting do
       end
     end
 
-    it "treats nil as 0" do
-      expect_formatted(item, nil).to include space_to_nbsp("0.0")
+    it "returns an empty string for nil" do
+      expect_formatted(item, nil).to eq ""
     end
 
     context "formatting" do

@@ -23,7 +23,7 @@ module Formatting
         amount = amount_or_method
       end
 
-      amount = 0 if amount.nil?
+      return "" if amount.nil?
 
       amount = format_number(amount, opts)
       apply_format_string(format_string, amount, currency)
