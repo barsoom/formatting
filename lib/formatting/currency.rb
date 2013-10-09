@@ -6,7 +6,7 @@ module Formatting
 
     def format_currency(record, amount_or_method, opts = {})
       if record.is_a?(Symbol)
-        raise NotARecordError, "#{record.inspect} doesn't look like a record"
+        raise NotARecordError, "Expected an object that could tell us its currency; got #{record.inspect}"
       end
 
       opts = Formatting.defaults.merge(opts)
