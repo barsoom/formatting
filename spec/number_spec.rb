@@ -14,6 +14,11 @@ describe Formatting do
       expect_formatted(1234567.89).to eq space_to_nbsp("1 234 567.89")
     end
 
+    it "applies default options" do
+      Formatting.defaults = { round: 3 }
+      expect_formatted(12.3456789).to eq "12.346"
+    end
+
     context "rounding" do
       it "doesn't round by default" do
         expect_formatted(12.3456789).to eq "12.3456789"

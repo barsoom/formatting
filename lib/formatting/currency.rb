@@ -3,6 +3,8 @@ module Formatting
     include Number
 
     def format_currency(record, amount_or_method, opts = {})
+      opts = Formatting.defaults.merge(opts)
+
       format_string = opts.fetch(:format, "<amount> <currency>")
 
       currency = opts.fetch(:currency) {
