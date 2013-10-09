@@ -83,3 +83,4 @@ Or install it yourself as:
 * Don't depend on `i18n`?
 * Rename? This name is boring and also generic enough that collisions seem likely.
 * Document options
+* Change some defaults: round: 2, min_decimals: 2

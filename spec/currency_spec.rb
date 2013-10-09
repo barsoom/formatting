@@ -27,6 +27,10 @@ describe Formatting do
       end
     end
 
+    it "treats nil as 0" do
+      expect_formatted(item, nil).to include space_to_nbsp("0.0")
+    end
+
     context "formatting" do
       it "formats numbers" do
         expect_formatted(item, 1234.56).to include space_to_nbsp("1 234.56")
