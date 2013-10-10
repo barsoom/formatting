@@ -20,12 +20,16 @@ describe Formatting do
     end
 
     context "rounding" do
-      it "doesn't round by default" do
-        expect_formatted(12.3456789).to eq "12.3456789"
+      it "rounds to 2 decimals by defaults" do
+        expect_formatted(12.3456789).to eq "12.35"
       end
 
       it "rounds to the given number of decimals" do
-        expect_formatted(12.3456789, round: 2).to eq "12.35"
+        expect_formatted(12.3456789, round: 3).to eq "12.346"
+      end
+
+      it "doesn't round if given false" do
+        expect_formatted(12.3456789, round: false).to eq "12.3456789"
       end
     end
 

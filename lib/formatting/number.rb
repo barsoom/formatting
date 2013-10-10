@@ -5,7 +5,7 @@ module Formatting
 
       thousands_separator = opts.fetch(:thousands_separator, NON_BREAKING_SPACE)
       decimal_separator   = opts.fetch(:decimal_separator, ".")
-      round           = opts.fetch(:round, nil)
+      round           = opts.fetch(:round, 2)
       min_decimals    = opts.fetch(:min_decimals, nil)
       explicit_sign   = opts.fetch(:explicit_sign, false)
       blank_when_zero = opts.fetch(:blank_when_zero, false)
