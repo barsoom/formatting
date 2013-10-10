@@ -35,7 +35,7 @@ describe Formatting do
 
     context "blanking when zero" do
       it "does not happen by default" do
-        expect_formatted(0).to eq "0.0"
+        expect_formatted(0).to eq "0.00"
       end
 
       it "can be enforced" do
@@ -45,31 +45,37 @@ describe Formatting do
 
 
     context "minimum number of decimals" do
-      it "is not enforced by default" do
-        expect_formatted(12).to eq "12.0"
-        expect_formatted(12.3).to eq "12.3"
+      it "defaults to two decimals" do
+        expect_formatted(12).to eq "12.00"
+        expect_formatted(12.3).to eq "12.30"
       end
 
       it "can be enforced" do
-        expect_formatted(12.3, min_decimals: 2).to eq "12.30"
+        expect_formatted(12.3, min_decimals: 3).to eq "12.300"
       end
+
+      it "is not enforced if given false" do
+        expect_formatted(12, min_decimals: false).to eq "12.0"
+        expect_formatted(12.3, min_decimals: false).to eq "12.3"
+      end
+
     end
 
     context "explicit sign" do
       it "is not included by default" do
-        expect_formatted(1).to eq "1.0"
-        expect_formatted(0).to eq "0.0"
-        expect_formatted(-1).to eq "-1.0"
+        expect_formatted(1).to eq "1.00"
+        expect_formatted(0).to eq "0.00"
+        expect_formatted(-1).to eq "-1.00"
       end
 
       it "never shows 0 as negative" do
-        expect_formatted(-0.0).to eq "0.0"
+        expect_formatted(-0.0).to eq "0.00"
       end
 
       it "can be enforced" do
-        expect_formatted(1, explicit_sign: true).to eq "+1.0"
-        expect_formatted(0, explicit_sign: true).to eq "0.0"
-        expect_formatted(-1, explicit_sign: true).to eq "-1.0"
+        expect_formatted(1, explicit_sign: true).to eq "+1.00"
+        expect_formatted(0, explicit_sign: true).to eq "0.00"
+        expect_formatted(-1, explicit_sign: true).to eq "-1.00"
       end
     end
   end
