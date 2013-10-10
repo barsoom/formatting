@@ -55,7 +55,10 @@ describe Formatting do
       end
 
       it "is not enforced if given false" do
-        expect_formatted(12, min_decimals: false).to eq "12.0"
+        expect_formatted(0, min_decimals: false).to eq "0"
+        expect_formatted(12, min_decimals: false).to eq "12"
+        expect_formatted(0.0, min_decimals: false).to eq "0.0"
+        expect_formatted(12.0, min_decimals: false).to eq "12.0"
         expect_formatted(12.3, min_decimals: false).to eq "12.3"
       end
 

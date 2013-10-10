@@ -10,6 +10,8 @@ module Formatting
       explicit_sign   = opts.fetch(:explicit_sign, false)
       blank_when_zero = opts.fetch(:blank_when_zero, false)
 
+      has_decimals = number.to_s.include?(".")
+
       if blank_when_zero
         return "" if number.zero?
       end
@@ -18,11 +20,10 @@ module Formatting
       number = 0 if number.zero?
 
       if round
-        number = number.round(round)
+        number = number.round(round) if has_decimals
       end
 
       integer, decimals = number.to_s.split(".")
-      decimals ||= "0"
 
       integer.gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{thousands_separator}")
 
@@ -31,10 +32,11 @@ module Formatting
       end
 
       if min_decimals
+        decimals ||= "0"
         decimals = decimals.ljust(min_decimals, "0")
       end
 
-      [integer, decimals].join(decimal_separator)
+      [integer, decimals].compact.join(decimal_separator)
     end
   end
 end
