@@ -3,7 +3,7 @@ module Formatting
     def format_number(number, opts = {})
       opts = Formatting.defaults.merge(opts)
 
-      thousands_separator = opts.fetch(:thousands_separator, NON_BREAKING_SPACE)
+      thousands_separator = opts.fetch(:thousands_separator) { default_thousands_separator }
       decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
       round           = opts.fetch(:round, 2)
       min_decimals    = opts.fetch(:min_decimals, 2)
@@ -40,6 +40,10 @@ module Formatting
     end
 
     private
+
+    def default_thousands_separator
+      t_format(:delimiter, NON_BREAKING_SPACE)
+    end
 
     def default_decimal_separator
       t_format(:separator, ".")

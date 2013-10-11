@@ -10,7 +10,7 @@ end
 
 describe Formatting do
   describe ".format_number" do
-    it "groups thousands" do
+    it "formats a number" do
       expect_formatted(1234567.89).to eq space_to_nbsp("1 234 567.89")
     end
 
@@ -19,11 +19,37 @@ describe Formatting do
       expect_formatted(12.3456789).to eq "12.346"
     end
 
+    context "thousands separator" do
+      context "with I18n" do
+        let(:i18n) { stub_const("I18n", double) }
+
+        it "uses I18n.t('number.format.delimiter') if present" do
+          allow(i18n).to receive(:t).with(:separator, instance_of(Hash))
+          expect(i18n).to receive(:t).
+            with(:delimiter, scope: "number.format", default: space_to_nbsp(" ")).
+            and_return(";")
+          expect_formatted(1234).to include "1;234"
+        end
+      end
+
+      context "without I18n" do
+        it "defaults to a non-breaking space" do
+          expect_formatted(1234).to include space_to_nbsp("1 234")
+          expect_formatted(1234).not_to include "1 234"
+        end
+      end
+
+      it "can be customized" do
+        expect_formatted(1234, thousands_separator: ":").to include "1:234"
+      end
+    end
+
     context "decimal separator" do
       context "with I18n" do
-        let(:i18n) { stub_const("I18n", double(t: nil)) }
+        let(:i18n) { stub_const("I18n", double) }
 
         it "uses I18n.t('number.format.separator') if present" do
+          allow(i18n).to receive(:t).with(:delimiter, instance_of(Hash))
           expect(i18n).to receive(:t).with(:separator, scope: "number.format", default: ".").and_return(";")
           expect_formatted(1.2).to eq "1;20"
         end
