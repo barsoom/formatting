@@ -19,6 +19,27 @@ describe Formatting do
       expect_formatted(12.3456789).to eq "12.346"
     end
 
+    context "decimal separator" do
+      context "with I18n" do
+        let(:i18n) { stub_const("I18n", double(t: nil)) }
+
+        it "uses I18n.t('number.format.separator') if present" do
+          expect(i18n).to receive(:t).with(:separator, scope: "number.format", default: ".").and_return(";")
+          expect_formatted(1.2).to eq "1;20"
+        end
+      end
+
+      context "without I18n" do
+        it "defaults to ." do
+          expect_formatted(1.2).to eq "1.20"
+        end
+      end
+
+      it "can be customized" do
+        expect_formatted(1.2, decimal_separator: ":").to eq "1:20"
+      end
+    end
+
     context "rounding" do
       it "rounds to 2 decimals by defaults" do
         expect_formatted(12.3456789).to eq "12.35"

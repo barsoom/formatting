@@ -4,7 +4,7 @@ module Formatting
       opts = Formatting.defaults.merge(opts)
 
       thousands_separator = opts.fetch(:thousands_separator, NON_BREAKING_SPACE)
-      decimal_separator   = opts.fetch(:decimal_separator, ".")
+      decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
       round           = opts.fetch(:round, 2)
       min_decimals    = opts.fetch(:min_decimals, 2)
       explicit_sign   = opts.fetch(:explicit_sign, false)
@@ -37,6 +37,20 @@ module Formatting
       end
 
       [integer, decimals].compact.join(decimal_separator)
+    end
+
+    private
+
+    def default_decimal_separator
+      t_format(:separator, ".")
+    end
+
+    def t_format(key, default)
+      if defined?(I18n)
+        I18n.t(key, scope: "number.format", default: default)
+      else
+        default
+      end
     end
   end
 end
