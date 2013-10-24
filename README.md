@@ -32,6 +32,8 @@ format_currency("SEK", 1234)  # => "1,234 SEK"
 
 ### Number
 
+#### Example usage
+
 ``` ruby
 Formatting.format_number(1234.567)  # => "1,234.57"
 Formatting.format_number(0, blank_when_zero: true)  # => ""
@@ -56,6 +58,8 @@ The currency formatter should usually be passed some object that
 the currency can be determined from. The idea is that even if you
 only have one currency now, you may add more later.
 
+#### Example usage
+
 ``` ruby
 Formatting.format_currency("SEK", 1234)  # => "1,234 SEK"
 
@@ -72,6 +76,15 @@ Formatting.format_currency(item, :price, show_currency: false)  # => "1,234"
 Formatting.defaults[:show_currency] = false
 Formatting.format_currency(item, :price)  # => "1,234"
 ```
+
+#### Options
+
+Passes on all the number options and also takes these:
+
+name                | default                                                                          | explanation
+--------------------|----------------------------------------------------------------------------------|------------
+currency | `first_argument.currency` if available | E.g. `"USD"`.
+format   | `"<amount> <currency>"` | A format string. Any spaces become non-breaking spaces.
 
 
 ## Installation
