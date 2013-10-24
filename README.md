@@ -40,10 +40,10 @@ Formatting.format_number(1, explicit_sign: true)  # => "+1"
 
 #### Options
 
-name                | allowed values | default | explanation
---------------------|----------------|---------|------------
-thousands_separator | any string     | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space |
-decimal_separator   | any string     | `I18n.t("number.format.separator")` if available, otherwise `"."` |
+name                | default | explanation
+--------------------|---------|------------
+thousands_separator | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space |
+decimal_separator   | `I18n.t("number.format.separator")` if available, otherwise `"."` |
 round               | `false` or a non-negative integer  | `2` | Round to the given number of decimals. Don't round if given `false`.
 
 
