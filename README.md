@@ -38,6 +38,14 @@ Formatting.format_number(0, blank_when_zero: true)  # => ""
 Formatting.format_number(1, explicit_sign: true)  # => "+1"
 ```
 
+#### Options
+
+name                | allowed values | default
+--------------------|----------------|--------
+thousands_separator | any string     | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space
+decimal_separator   | any string     | `I18n.t("number.format.separator")` if available, otherwise `"."`
+
+
 ### Currency
 
 The currency formatter should usually be passed some object that
