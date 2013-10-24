@@ -64,6 +64,10 @@ describe Formatting do
       it "is not added if the record does not respond to #currency" do
         expect_formatted(item, 1).to eq space_to_nbsp("1.00")
       end
+
+      it "is not added if given as 'false'" do
+        expect_formatted(item, 1, currency: false).to eq space_to_nbsp("1.00")
+      end
     end
 
     context "format string option" do

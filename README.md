@@ -61,20 +61,17 @@ only have one currency now, you may add more later.
 #### Example usage
 
 ``` ruby
-Formatting.format_currency("SEK", 1234)  # => "1,234 SEK"
-
 item = Item.new(price: 1234, currency: "SEK")
-Formatting.format_currency(item, :price)  # => "1,234 SEK"
-Formatting.format_currency(company, item.price)  # => "1,234 SEK"
+Formatting.format_currency(item, :price)  # => "1,234.00 SEK"
+Formatting.format_currency(company, item.price)  # => "1,234.00 SEK"
+Formatting.format_currency(company, 4567)  # => "4,567.00 SEK"
+
+Formatting.format_currency(company, 4567, currency: false)  # => "4,567.00"
 
 Formatting.defaults[:currency] = "SEK"
 item = Item.new(price: 1234)  # Does not respond to "currency"
-Formatting.format_currency(item, :price)  # => "1,234 SEK"
+Formatting.format_currency(item, :price)  # => "1,234.00 SEK"
 
-item = Item.new(price: 1234, currency: "SEK")
-Formatting.format_currency(item, :price, show_currency: false)  # => "1,234"
-Formatting.defaults[:show_currency] = false
-Formatting.format_currency(item, :price)  # => "1,234"
 ```
 
 #### Options
@@ -83,7 +80,7 @@ Passes on all the number options and also takes these:
 
 name                | default                                                                          | explanation
 --------------------|----------------------------------------------------------------------------------|------------
-currency | `first_argument.currency` if available | E.g. `"USD"`.
+currency | `first_argument.currency` if available | E.g. `"USD"`. Can be `false`.
 format   | `"<amount> <currency>"` | A format string. Any spaces become non-breaking spaces.
 
 

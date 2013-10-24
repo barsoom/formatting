@@ -16,6 +16,7 @@ module Formatting
       currency = opts.fetch(:currency) {
         record.respond_to?(:currency) ? record.currency: nil
       }
+      currency ||= nil
 
       if amount_or_method.is_a?(Symbol)
         amount = record.public_send(amount_or_method)
