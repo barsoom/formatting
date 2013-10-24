@@ -24,7 +24,7 @@ include Formatting::Number
 format_number(1234)  # => "1,234.00"
 
 include Formatting::Currency
-format_currency("SEK", 1234)  # => "1,234.00 SEK"
+format_currency(item, :price)  # => "1,234.00 SEK"
 ```
 
 
