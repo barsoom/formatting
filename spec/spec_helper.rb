@@ -8,8 +8,4 @@ end
 
 RSpec.configure do |config|
   config.include Helpers
-
-  config.before do
-    Formatting.defaults = {}
-  end
 end

@@ -1,8 +1,6 @@
 module Formatting
   module Number
     def format_number(number, opts = {})
-      opts = Formatting.defaults.merge(opts)
-
       thousands_separator = opts.fetch(:thousands_separator) { default_thousands_separator }
       decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
       round           = opts.fetch(:round, 2)

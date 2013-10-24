@@ -9,8 +9,6 @@ module Formatting
         raise NotARecordError, "Expected an object that could tell us its currency; got #{record.inspect}"
       end
 
-      opts = Formatting.defaults.merge(opts)
-
       format_string = opts.fetch(:format, "<amount> <currency>")
       skip_currency = opts.fetch(:skip_currency, false)
 

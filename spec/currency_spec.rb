@@ -39,11 +39,6 @@ describe Formatting do
       it "passes on number formatting options" do
         expect_formatted(item, 1.567, round: 2).to include "1.57"
       end
-
-      it "applies default options" do
-        Formatting.defaults = { currency: "FOO" }
-        expect_formatted(item, 1).to eq space_to_nbsp("1.00 FOO")
-      end
     end
 
     context "currency option" do
