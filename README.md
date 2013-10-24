@@ -2,9 +2,7 @@
 
 Rails-less formatting for your unit-testable code.
 
-*Does* currently depend on the `i18n` library for number separators.
-
-Very much a work in progress currently.
+Will use the `i18n` library for formatting defaults if present, but it's not a requirement.
 
 Formats:
   * Numbers
@@ -23,10 +21,10 @@ Or include the modules you want:
 
 ``` ruby
 include Formatting::Number
-format_number(1234)  # => "1,234"
+format_number(1234)  # => "1,234.00"
 
 include Formatting::Currency
-format_currency("SEK", 1234)  # => "1,234 SEK"
+format_currency("SEK", 1234)  # => "1,234.00 SEK"
 ```
 
 
@@ -98,5 +96,4 @@ Or install it yourself as:
 ## TODO
 
 * Use real i18n in specs so they're less fragile and ugly
-* Document options
 * Rename? This name is boring and also generic enough that collisions seem likely.
