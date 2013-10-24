@@ -35,7 +35,7 @@ format_currency("SEK", 1234)  # => "1,234.00 SEK"
 ``` ruby
 Formatting.format_number(1234.567)  # => "1,234.57"
 Formatting.format_number(0, blank_when_zero: true)  # => ""
-Formatting.format_number(1, explicit_sign: true)  # => "+1"
+Formatting.format_number(1, explicit_sign: true)  # => "+1.00"
 ```
 
 #### Options
