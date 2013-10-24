@@ -19,9 +19,7 @@ module Formatting
       # Avoid negative zero.
       number = 0 if number.zero?
 
-      if round
-        number = number.round(round) if has_decimals
-      end
+      number = number.round(round) if has_decimals
 
       integer, decimals = number.to_s.split(".")
 
@@ -31,10 +29,8 @@ module Formatting
         integer = "+#{integer}" if number > 0
       end
 
-      if min_decimals
-        decimals ||= "0"
-        decimals = decimals.ljust(min_decimals, "0")
-      end
+      decimals ||= "0"
+      decimals = decimals.ljust(min_decimals, "0")
 
       [integer, decimals].compact.join(decimal_separator)
     end
