@@ -40,11 +40,14 @@ Formatting.format_number(1, explicit_sign: true)  # => "+1"
 
 #### Options
 
-name                | default | explanation
---------------------|---------|------------
+name                | default                                                                          | explanation
+--------------------|----------------------------------------------------------------------------------|------------
 thousands_separator | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space |
-decimal_separator   | `I18n.t("number.format.separator")` if available, otherwise `"."` |
-round               | `false` or a non-negative integer  | `2` | Round to the given number of decimals. Don't round if given `false`.
+decimal_separator   | `I18n.t("number.format.separator")` if available, otherwise `"."`                |
+round               | `2`                                                                              | Round to the given number of decimals. Don't round if given `false`.
+blank_when_zero     | `false`                                                                          | If `true`, returns `""` for a zero value.
+min_decimals        | `2`                                                                              | Show at least that number of decimals. Don't enforce if given `false`.
+explicit_sign       | `false`                                                                          | If `true`, prefixes positive values with a `"+"`. Doesn't prefix `0`.
 
 
 ### Currency

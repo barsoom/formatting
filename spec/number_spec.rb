@@ -108,7 +108,6 @@ describe Formatting do
         expect_formatted(12.0, min_decimals: false).to eq "12.0"
         expect_formatted(12.3, min_decimals: false).to eq "12.3"
       end
-
     end
 
     context "explicit sign" do
