@@ -87,6 +87,26 @@ describe Formatting do
           to eq space_to_nbsp("123.00")
       end
     end
+
+    context "skip_currency option" do
+      context "set to 'true'" do
+        it "doesn't add the currency" do
+          expect_formatted(item, 123, currency: "SEK", skip_currency: true).to eq space_to_nbsp("123.00")
+        end
+      end
+
+      context "set to 'false'" do
+        it "adds the currency" do
+          expect_formatted(item, 123, currency: "SEK", skip_currency: false).to eq space_to_nbsp("123.00 SEK")
+        end
+      end
+
+      context "by default" do
+        it "adds the currency" do
+          expect_formatted(item, 123, currency: "SEK").to eq space_to_nbsp("123.00 SEK")
+        end
+      end
+    end
   end
 
   def expect_formatted(record, value, opts = {})

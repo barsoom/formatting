@@ -12,11 +12,14 @@ module Formatting
       opts = Formatting.defaults.merge(opts)
 
       format_string = opts.fetch(:format, "<amount> <currency>")
+      skip_currency = opts.fetch(:skip_currency, false)
 
-      currency = opts.fetch(:currency) {
-        record.respond_to?(:currency) ? record.currency: nil
-      }
-      currency ||= nil
+      unless skip_currency
+        currency = opts.fetch(:currency) {
+          record.respond_to?(:currency) ? record.currency: nil
+        }
+        currency = nil if currency == false
+      end
 
       if amount_or_method.is_a?(Symbol)
         amount = record.public_send(amount_or_method)

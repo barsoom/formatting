@@ -78,10 +78,11 @@ Formatting.format_currency(item, :price)  # => "1,234.00 SEK"
 
 Passes on all the number options and also takes these:
 
-name     | default                                | explanation
----------|----------------------------------------|------------
-currency | `first_argument.currency` if available | E.g. `"USD"`. Can be `false`.
-format   | `"<amount> <currency>"`                | A format string. Any spaces become non-breaking spaces.
+name            | default                                | explanation
+----------------|----------------------------------------|------------
+currency        | `first_argument.currency` if available | E.g. `"USD"`. Can be `false`.
+format          | `"<amount> <currency>"`                | A format string. Any spaces become non-breaking spaces.
+skip_currency   | `false`                                | If `true`, doesn't add the currency to the amount.
 
 
 ## Installation
