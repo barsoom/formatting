@@ -14,6 +14,11 @@ describe Formatting do
       expect_formatted(1234567.89).to eq space_to_nbsp("1 234 567.89")
     end
 
+    # We had a bug in Ruby 1.9.
+    it "uses UTF-8 encoding so non-breaking spaces are interpreted correctly" do
+      expect(Formatting.format_number(1234).encoding).to eq Encoding::UTF_8
+    end
+
     context "thousands separator" do
       context "with I18n" do
         let(:i18n) { stub_const("I18n", double) }

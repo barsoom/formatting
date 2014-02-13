@@ -2,7 +2,7 @@ require "formatting"
 
 module Helpers
   def space_to_nbsp(value)
-    value.gsub(" ", "\xc2\xa0")
+    value.gsub(" ", Formatting::NON_BREAKING_SPACE)
   end
 end
 
