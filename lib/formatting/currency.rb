@@ -8,29 +8,21 @@ module Formatting
   end
 
   class FormatCurrency
-    pattr_initialize :record_or_currency, :amount_or_method, :opts
+    attr_private :record_or_currency, :amount_or_method, :opts,
+      :format_string, :skip_currency
+
+    def initialize(record_or_currency, amount_or_method, opts)
+      @record_or_currency = record_or_currency
+      @amount_or_method = amount_or_method
+      @opts = opts
+
+      @format_string = opts.fetch(:format, "<amount> <currency>")
+      @skip_currency = opts.fetch(:skip_currency, false)
+    end
 
     def format
-      format_string = opts.fetch(:format, "<amount> <currency>")
-      skip_currency = opts.fetch(:skip_currency, false)
-
-      unless skip_currency
-        currency = opts.fetch(:currency) {
-          case record_or_currency
-          when String, Symbol
-            record_or_currency
-          else
-            record_or_currency.respond_to?(:currency) ? record_or_currency.currency : nil
-          end
-        }
-        currency = nil if currency == false
-      end
-
-      if amount_or_method.is_a?(Symbol)
-        amount = record_or_currency.public_send(amount_or_method)
-      else
-        amount = amount_or_method
-      end
+      currency = determine_currency
+      amount = determine_amount
 
       return "" if amount.nil?
 
@@ -39,6 +31,30 @@ module Formatting
     end
 
     private
+
+    def default_currency
+      case record_or_currency
+      when String, Symbol
+        record_or_currency
+      else
+        record_or_currency.respond_to?(:currency) ? record_or_currency.currency : nil
+      end
+    end
+
+    def determine_currency
+      return nil if skip_currency
+
+      currency = opts.fetch(:currency) { default_currency }
+      currency == false ? nil : currency
+    end
+
+    def determine_amount
+      if amount_or_method.is_a?(Symbol)
+        record_or_currency.public_send(amount_or_method)
+      else
+        amount_or_method
+      end
+    end
 
     def apply_format_string(format_string, amount, currency)
       out = format_string.dup

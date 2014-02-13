@@ -8,16 +8,22 @@ module Formatting
   end
 
   class FormatNumber
-    pattr_initialize :input_number, :opts
+    attr_private :input_number,
+      :thousands_separator, :decimal_separator,
+      :round, :min_decimals, :explicit_sign, :blank_when_zero
+
+    def initialize(input_number, opts)
+      @input_number = input_number
+
+      @thousands_separator = opts.fetch(:thousands_separator) { default_thousands_separator }
+      @decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
+      @round           = opts.fetch(:round, 2)
+      @min_decimals    = opts.fetch(:min_decimals, 2)
+      @explicit_sign   = opts.fetch(:explicit_sign, false)
+      @blank_when_zero = opts.fetch(:blank_when_zero, false)
+    end
 
     def format
-      thousands_separator = opts.fetch(:thousands_separator) { default_thousands_separator }
-      decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
-      round           = opts.fetch(:round, 2)
-      min_decimals    = opts.fetch(:min_decimals, 2)
-      explicit_sign   = opts.fetch(:explicit_sign, false)
-      blank_when_zero = opts.fetch(:blank_when_zero, false)
-
       number = input_number
 
       has_decimals = number.to_s.include?(".")
@@ -35,6 +41,7 @@ module Formatting
 
       integer, decimals = number.to_s.split(".")
 
+      # Separate groups by thousands separator.
       integer.gsub!(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1#{thousands_separator}")
 
       if explicit_sign
