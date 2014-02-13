@@ -1,8 +1,16 @@
+require "attr_extras"
+
 module Formatting
   module Currency
-    include Number
-
     def format_currency(record_or_currency, amount_or_method, opts = {})
+      FormatCurrency.new(record_or_currency, amount_or_method, opts).format
+    end
+  end
+
+  class FormatCurrency
+    pattr_initialize :record_or_currency, :amount_or_method, :opts
+
+    def format
       format_string = opts.fetch(:format, "<amount> <currency>")
       skip_currency = opts.fetch(:skip_currency, false)
 
@@ -26,7 +34,7 @@ module Formatting
 
       return "" if amount.nil?
 
-      amount = format_number(amount, opts)
+      amount = FormatNumber.new(amount, opts).format
       apply_format_string(format_string, amount, currency)
     end
 
