@@ -1,26 +1,25 @@
 module Formatting
-  class NotARecordError < StandardError; end
-
   module Currency
     include Number
 
-    def format_currency(record, amount_or_method, opts = {})
-      if record.is_a?(Symbol)
-        raise NotARecordError, "Expected an object that could tell us its currency; got #{record.inspect}"
-      end
-
+    def format_currency(record_or_currency, amount_or_method, opts = {})
       format_string = opts.fetch(:format, "<amount> <currency>")
       skip_currency = opts.fetch(:skip_currency, false)
 
       unless skip_currency
         currency = opts.fetch(:currency) {
-          record.respond_to?(:currency) ? record.currency: nil
+          case record_or_currency
+          when String, Symbol
+            record_or_currency
+          else
+            record_or_currency.respond_to?(:currency) ? record_or_currency.currency : nil
+          end
         }
         currency = nil if currency == false
       end
 
       if amount_or_method.is_a?(Symbol)
-        amount = record.public_send(amount_or_method)
+        amount = record_or_currency.public_send(amount_or_method)
       else
         amount = amount_or_method
       end

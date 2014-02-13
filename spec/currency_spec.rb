@@ -22,8 +22,9 @@ describe Formatting do
         expect_formatted(item, :price).to eq space_to_nbsp("2.00")
       end
 
-      it "complains if the 'record' looks like a method name (a likely mistake)" do
-        expect { Formatting.format_currency(:item, 123) }.to raise_error(Formatting::NotARecordError)
+      it "can take a currency string or symbol and a value" do
+        expect_formatted("SEK", 2).to eq space_to_nbsp("2.00 SEK")
+        expect_formatted(:SEK, 2).to eq space_to_nbsp("2.00 SEK")
       end
     end
 
