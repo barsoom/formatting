@@ -6,8 +6,8 @@ require 'formatting/version'
 Gem::Specification.new do |spec|
   spec.name          = "formatting"
   spec.version       = Formatting::VERSION
-  spec.authors       = ["Henrik Nyh"]
-  spec.email         = ["henrik@nyh.se"]
+  spec.authors       = ["Henrik Nyh", "Tomas Skogberg"]
+  spec.email         = ["henrik@barsoom.se", "tomas@barsoom.se"]
   spec.summary       = %q{Rails-less formatting for your unit-testable code.}
   spec.homepage      = ""
   spec.license       = "MIT"
