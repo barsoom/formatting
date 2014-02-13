@@ -110,6 +110,16 @@ describe Formatting do
       end
     end
 
+    context "decimals on integers" do
+      it "defaults to adding decimals" do
+        expect_formatted(12).to eq "12.00"
+      end
+
+      it "can be turned off" do
+        expect_formatted(12, decimals_on_integers: false).to eq "12"
+      end
+    end
+
     context "explicit sign" do
       it "is not included by default" do
         expect_formatted(1).to eq "1.00"

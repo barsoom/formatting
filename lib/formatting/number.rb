@@ -10,17 +10,18 @@ module Formatting
   class FormatNumber
     attr_private :input_number,
       :thousands_separator, :decimal_separator,
-      :round, :min_decimals, :explicit_sign, :blank_when_zero
+      :round, :min_decimals, :decimals_on_integers, :explicit_sign, :blank_when_zero
 
     def initialize(input_number, opts)
       @input_number = input_number
 
-      @thousands_separator = opts.fetch(:thousands_separator) { default_thousands_separator }
-      @decimal_separator   = opts.fetch(:decimal_separator) { default_decimal_separator }
-      @round           = opts.fetch(:round, 2)
-      @min_decimals    = opts.fetch(:min_decimals, 2)
-      @explicit_sign   = opts.fetch(:explicit_sign, false)
-      @blank_when_zero = opts.fetch(:blank_when_zero, false)
+      @thousands_separator  = opts.fetch(:thousands_separator) { default_thousands_separator }
+      @decimal_separator    = opts.fetch(:decimal_separator) { default_decimal_separator }
+      @round                = opts.fetch(:round, 2)
+      @min_decimals         = opts.fetch(:min_decimals, 2)
+      @decimals_on_integers = opts.fetch(:decimals_on_integers, true)
+      @explicit_sign        = opts.fetch(:explicit_sign, false)
+      @blank_when_zero      = opts.fetch(:blank_when_zero, false)
     end
 
     def format
@@ -48,7 +49,7 @@ module Formatting
         integer = "+#{integer}" if number > 0
       end
 
-      if min_decimals
+      if min_decimals && (has_decimals || decimals_on_integers)
         decimals ||= "0"
         decimals = decimals.ljust(min_decimals, "0")
       end

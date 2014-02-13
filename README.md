@@ -40,14 +40,15 @@ Formatting.format_number(1, explicit_sign: true)  # => "+1.00"
 
 #### Options
 
-name                | default                                                                          | explanation
---------------------|----------------------------------------------------------------------------------|------------
-thousands_separator | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space |
-decimal_separator   | `I18n.t("number.format.separator")` if available, otherwise `"."`                |
-round               | `2`                                                                              | Round to the given number of decimals. Don't round if given `false`.
-blank_when_zero     | `false`                                                                          | If `true`, returns `""` for a zero value.
-min_decimals        | `2`                                                                              | Show at least that number of decimals. Don't enforce if given `false`.
-explicit_sign       | `false`                                                                          | If `true`, prefixes positive values with a `"+"`. Doesn't prefix `0`.
+name                    | default                                                                          | explanation
+------------------------|----------------------------------------------------------------------------------|------------
+thousands_separator     | `I18n.t("number.format.delimiter")` if available, otherwise a non-breaking space |
+decimal_separator       | `I18n.t("number.format.separator")` if available, otherwise `"."`                |
+round                   | `2`                                                                              | Round to the given number of decimals. Don't round if given `false`.
+blank_when_zero         | `false`                                                                          | If `true`, returns `""` for a zero value.
+min_decimals            | `2`                                                                              | Show at least that number of decimals. Don't enforce if given `false`.
+explicit_sign           | `false`                                                                          | If `true`, prefixes positive values with a `"+"`. Doesn't prefix `0`.
+decimals_on_integers    | `true`                                                                           | If `false`, integers won't include decimals.
 
 
 ### Currency
