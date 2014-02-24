@@ -10,7 +10,7 @@ module Formatting
   class FormatNumber
     attr_private :input_number,
       :thousands_separator, :decimal_separator,
-      :round, :min_decimals, :decimals_on_integers, :explicit_sign, :blank_when_zero
+      :round, :min_decimals, :decimals_on_integers, :treat_zero_decimals_as_integer, :explicit_sign, :blank_when_zero
 
     def initialize(input_number, opts)
       @input_number = input_number
@@ -20,12 +20,17 @@ module Formatting
       @round                = opts.fetch(:round, 2)
       @min_decimals         = opts.fetch(:min_decimals, 2)
       @decimals_on_integers = opts.fetch(:decimals_on_integers, true)
+      @treat_zero_decimals_as_integer = opts.fetch(:treat_zero_decimals_as_integer, false)
       @explicit_sign        = opts.fetch(:explicit_sign, false)
       @blank_when_zero      = opts.fetch(:blank_when_zero, false)
     end
 
     def format
       number = input_number
+
+      if treat_zero_decimals_as_integer && number.modulo(1).zero?
+        number = number.to_i
+      end
 
       has_decimals = number.to_s.include?(".")
 

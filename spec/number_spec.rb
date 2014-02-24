@@ -120,6 +120,16 @@ describe Formatting do
       end
     end
 
+    context "treat_zero_decimals_as_integer" do
+      it "defaults to false" do
+        expect_formatted(12.0, decimals_on_integers: false).to eq "12.00"
+      end
+
+      it "can be turned off" do
+        expect_formatted(12.0, decimals_on_integers: false, treat_zero_decimals_as_integer: true).to eq "12"
+      end
+    end
+
     context "explicit sign" do
       it "is not included by default" do
         expect_formatted(1).to eq "1.00"
