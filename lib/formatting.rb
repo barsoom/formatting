@@ -4,10 +4,12 @@
 require "formatting/version"
 require "formatting/number"
 require "formatting/currency"
+require "formatting/percent"
 
 module Formatting
   NON_BREAKING_SPACE = "\xc2\xa0"
 
   extend Number
   extend Currency
+  extend Percent
 end

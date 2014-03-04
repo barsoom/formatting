@@ -7,6 +7,7 @@ Will use the `i18n` library for formatting defaults if present, but it's not a r
 Formats:
   * Numbers
   * Currency
+  * Percent
 
 
 ## Usage
@@ -25,6 +26,9 @@ format_number(1234)  # => "1,234.00"
 
 include Formatting::Currency
 format_currency(item, :price)  # => "1,234.00 SEK"
+
+include Formatting::Percent
+format_percent(12.3)  # => "12.30%"
 ```
 
 
@@ -82,6 +86,20 @@ name            | default                                                       
 currency        | `first_argument.currency` if available, or `first_argument` if it's a currency | E.g. `"USD"`. Can be `false`.
 format          | `"<amount> <currency>"`                                                        | A format string. Any spaces become non-breaking spaces.
 skip_currency   | `false`                                                                        | If `true`, doesn't add the currency to the amount.
+
+
+### Percent
+
+#### Example usage
+
+``` ruby
+Formatting.format_percent(12.3)  # => "12.3%"
+```
+
+
+#### Options
+
+Passes on all the number options.
 
 
 ## Installation
