@@ -73,7 +73,7 @@ module Formatting
     end
 
     def t_format(key, default)
-      if defined?(I18n)
+      if defined?(I18n) && I18n.respond_to?(:t)
         I18n.t(key, scope: "number.format", default: default)
       else
         default

@@ -14,7 +14,22 @@ describe Formatting, ".format_percent" do
   end
 
   it "passes on number formatting options" do
-    expect_formatted(1.567, round: 2).to include "1.57"
+    expect_formatted(1.567, round: 1).to include "1.6"
+  end
+
+  context "format string option" do
+    it "is used if provided" do
+      expect_formatted(1, format: "%<number>%").to eq "%1.00%"
+    end
+
+    context "if I18n.locale is available" do
+      let(:i18n) { stub_const("I18n", double) }
+
+      it "defaults sensibly for some locales that require spacing the sign" do
+        i18n.stub(locale: :sv)
+        expect_formatted(1).to eq space_to_nbsp("1.00 %")
+      end
+    end
   end
 
   def expect_formatted(number, opts = {})

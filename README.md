@@ -99,7 +99,11 @@ Formatting.format_percent(12.3)  # => "12.3%"
 
 #### Options
 
-Passes on all the number options.
+Passes on all the number options and also takes these:
+
+name            | default                                           | explanation
+----------------|---------------------------------------------------|------------
+format          | `"<number>%"` or `<number> %` depending on locale | A format string.
 
 
 ## Installation
