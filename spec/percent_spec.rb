@@ -26,7 +26,7 @@ describe Formatting, ".format_percent" do
       let(:i18n) { stub_const("I18n", double) }
 
       it "defaults sensibly for some locales that require spacing the sign" do
-        i18n.stub(locale: :sv)
+        allow(i18n).to receive(:locale).and_return(:sv)
         expect_formatted(1).to eq space_to_nbsp("1.00 %")
       end
     end

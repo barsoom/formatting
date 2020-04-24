@@ -18,7 +18,7 @@ describe Formatting do
       end
 
       it "can take a record and a method name" do
-        item.stub(price: 2)
+        allow(item).to receive(:price).and_return(2)
         expect_formatted(item, :price).to eq space_to_nbsp("2.00")
       end
 
@@ -48,12 +48,12 @@ describe Formatting do
       end
 
       it "is read from the record's #currency if present" do
-        item.stub(currency: "SEK")
+        allow(item).to receive(:currency).and_return("SEK")
         expect_formatted(item, 1).to eq space_to_nbsp("1.00 SEK")
       end
 
       it "is not added if the record's #currency is blank" do
-        item.stub(currency: "")
+        allow(item).to receive(:currency).and_return("")
         expect_formatted(item, 1).to eq space_to_nbsp("1.00")
       end
 
