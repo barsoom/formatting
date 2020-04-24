@@ -39,7 +39,7 @@ module Formatting
       end
 
       # Avoid negative zero.
-      number = 0 if number.zero?
+      number = number.abs if number.zero?
 
       if round
         number = number.round(round) if has_decimals
