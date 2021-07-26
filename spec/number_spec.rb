@@ -90,7 +90,6 @@ RSpec.describe Formatting do
       end
     end
 
-
     context "minimum number of decimals" do
       it "defaults to two decimals" do
         expect_formatted(12).to eq "12.00"
