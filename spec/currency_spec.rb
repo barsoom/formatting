@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Formatting::Currency do
+RSpec.describe Formatting::Currency do
   it "can be included as a module" do
     object = Object.new
     object.extend Formatting::Currency
@@ -8,7 +8,7 @@ describe Formatting::Currency do
   end
 end
 
-describe Formatting do
+RSpec.describe Formatting do
   describe ".format_currency" do
     let(:item) { double }
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Formatting::Percent do
+RSpec.describe Formatting::Percent do
   it "can be included as a module" do
     object = Object.new
     object.extend Formatting::Percent
@@ -8,7 +8,7 @@ describe Formatting::Percent do
   end
 end
 
-describe Formatting, ".format_percent" do
+RSpec.describe Formatting, ".format_percent" do
   it "formats a number" do
     expect_formatted(1.2).to eq "1.20%"
   end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Formatting::Number do
+RSpec.describe Formatting::Number do
   it "can be included as a module" do
     object = Object.new
     object.extend Formatting::Number
@@ -8,7 +8,7 @@ describe Formatting::Number do
   end
 end
 
-describe Formatting do
+RSpec.describe Formatting do
   describe ".format_number" do
     it "formats a number" do
       expect_formatted(1234567.89).to eq space_to_nbsp("1 234 567.89")
