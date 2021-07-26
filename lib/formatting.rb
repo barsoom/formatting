@@ -1,4 +1,5 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 # ^ so NON_BREAKING_SPACE is treated as UTF-8 in Ruby 1.9.
 
 require "formatting/version"
