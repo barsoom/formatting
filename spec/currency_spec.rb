@@ -68,8 +68,8 @@ RSpec.describe Formatting do
 
     context "format string option" do
       it "is used if provided" do
-        expect_formatted(item, 123, format: "C: <currency> A: <amount>", currency: "XYZ").
-          to eq space_to_nbsp("C: XYZ A: 123.00")
+        expect_formatted(item, 123, format: "C: <currency> A: <amount>", currency: "XYZ")
+          .to eq space_to_nbsp("C: XYZ A: 123.00")
       end
 
       it "will have spaces turned into non-breaking spaces" do
@@ -79,8 +79,8 @@ RSpec.describe Formatting do
       end
 
       it "is stripped" do
-        expect_formatted(item, 123, format: "<amount> <currency>", currency: nil).
-          to eq space_to_nbsp("123.00")
+        expect_formatted(item, 123, format: "<amount> <currency>", currency: nil)
+          .to eq space_to_nbsp("123.00")
       end
     end
 

@@ -25,9 +25,9 @@ RSpec.describe Formatting do
 
         it "uses I18n.t('number.format.delimiter') if present" do
           allow(i18n).to receive(:t).with(:separator, instance_of(Hash))
-          expect(i18n).to receive(:t).
-            with(:delimiter, scope: "number.format", default: space_to_nbsp(" ")).
-            and_return(";")
+          expect(i18n).to receive(:t)
+            .with(:delimiter, scope: "number.format", default: space_to_nbsp(" "))
+            .and_return(";")
           expect_formatted(1234).to include "1;234"
         end
       end
