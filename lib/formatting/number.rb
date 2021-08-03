@@ -61,7 +61,7 @@ module Formatting
         decimals = decimals.ljust(min_decimals, "0")
       end
 
-      [integer, decimals].compact.join(decimal_separator)
+      [ integer, decimals ].compact.join(decimal_separator)
     end
 
     private
