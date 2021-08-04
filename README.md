@@ -1,3 +1,5 @@
+[![Ruby CI](https://github.com/barsoom/formatting/actions/workflows/ci.yml/badge.svg)](https://github.com/barsoom/formatting/actions/workflows/ci.yml)
+
 # Formatting
 
 Rails-less formatting for your unit-testable code.
