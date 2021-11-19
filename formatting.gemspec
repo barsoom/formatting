@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Rails-less formatting for your unit-testable code.}
   spec.homepage      = ""
   spec.license       = "MIT"
+  spec.metadata      = { "rubygems_mfa_required" => "true" }
 
   spec.files         = `git ls-files`.split($/)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
